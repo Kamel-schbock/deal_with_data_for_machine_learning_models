@@ -1,0 +1,30 @@
+# How to deal with data frame in python for machine learning models
+from pandas import DataFrame
+from pandas import Series
+from sklearn.preprocessing import MinMaxScaler
+from sklearn import preprocessing
+import copy
+from numpy import concatenate
+scaler = None
+
+def deal_with_data(your_data):    
+    global scaler
+    diff_set = list()
+    Data = np.array(copy.copy(your_data))
+    scaler = preprocessing.MinMaxScaler(feature_range=(-1, 1)).fit(Data.reshape(Data.shape[0] * Data.shape[1],Data.shape[2]))
+    List = list(range(2))
+    random.shuffle(List)
+    for i in List:
+        data_o = your_data[i]
+        scaled_values = scaler.transform(copy.copy(data_o))                  
+        mValues = scaled_values.values[1:220, :]             
+        mValues_train = mValues[:, 0:2]            
+        mValues_test = mValues[:, 2:]              
+        mValues_s_train = mValues_train 
+        mValues_s_test = mValues_test 
+        Dataset = np.concatenate((mValues_s_train, mValues_s_test),axis=1)
+        #Define your model here
+  
+
+func = DataFrame()
+func['func'] = deal_with_data(data)
